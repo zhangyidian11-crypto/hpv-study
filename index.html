@@ -1,663 +1,684 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
-    <meta name="x-poe-datastore-behavior" content="local_only">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 健康助手 - HPV疫苗交互咨询</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .typing-indicator span {
-            animation: blink 1.4s infinite both;
-        }
-        .typing-indicator span:nth-child(2) { animation-delay: .2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: .4s; }
-        @keyframes blink {
-            0% { opacity: .2; }
-            20% { opacity: 1; }
-            100% { opacity: .2; }
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 健康助手 - HPV疫苗交互咨询</title>
+
+  <meta name="x-poe-datastore-behavior" content="local_only">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .typing-indicator span {
+      animation: blink 1.4s infinite both;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: .2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes blink {
+      0% { opacity: .2; }
+      20% { opacity: 1; }
+      100% { opacity: .2; }
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col items-center justify-center p-0 sm:p-4">
 
-    <!-- 白色主容器 -->
-    <div class="w-full max-w-md bg-white sm:rounded-2xl shadow-lg flex flex-col h-screen sm:h-[720px] overflow-hidden border border-slate-200">
-        
-        <!-- 研究者控制面板（默认隐藏 style="display: none;"） -->
-        <div id="researcher-panel" style="display: none;" class="bg-slate-800 text-white p-3 text-xs flex flex-col gap-2 border-b border-slate-700">
-            <div class="flex justify-between items-center">
-                <span class="font-bold text-amber-400 flex items-center gap-1">
-                    <i data-lucide="settings" class="w-3.5 h-3.5"></i> 实验干预组切换器（已锁定隐藏）
-                </span>
-                <button onclick="togglePanel()" class="text-slate-400 hover:text-white">隐藏面板</button>
-            </div>
-            <div class="grid grid-cols-5 gap-1">
-                <button onclick="switchGroup('G2')" id="btn-G2" class="group-btn py-1 px-1 rounded bg-blue-600 text-white font-medium text-[10px] text-center">G2 增益</button>
-                <button onclick="switchGroup('G3')" id="btn-G3" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G3 损失</button>
-                <button onclick="switchGroup('G4')" id="btn-G4" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G4 规范</button>
-                <button onclick="switchGroup('G5')" id="btn-G5" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G5 结构</button>
-                <button onclick="switchGroup('G6')" id="btn-G6" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G6 个性</button>
-            </div>
-            <div class="text-[10px] text-slate-300" id="group-desc">
-                当前加载：<strong>G2 增益框架</strong> - 强调接种对男女健康的积极收益。
-            </div>
-        </div>
+  <div class="w-full max-w-md bg-white sm:rounded-2xl shadow-lg flex flex-col h-screen sm:h-[720px] overflow-hidden border border-slate-200">
 
-        <!-- 头部 -->
-        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white flex items-center justify-between shadow-md">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/30 shadow-inner">
-                    <i data-lucide="bot" class="w-6 h-6 text-white"></i>
-                </div>
-                <div>
-                    <h1 class="text-sm font-bold tracking-wide flex items-center gap-1.5">
-                        AI 健康顾问
-                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    </h1>
-                    <p class="text-[10px] text-blue-100">男女通用 · 科学决策支持系统</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-2 text-white/80">
-                <i data-lucide="shield-check" class="w-5 h-5" title="专业医学科普"></i>
-            </div>
-        </div>
-
-        <!-- 聊天区 -->
-        <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 no-scrollbar">
-            <div class="flex items-start space-x-2.5">
-                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
-                    <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
-                </div>
-                <div class="bg-white rounded-2xl rounded-tl-none p-3.5 shadow-sm border border-slate-100 max-w-[85%]">
-                    <p class="text-xs text-slate-800 leading-relaxed">
-                        您好！我是您的 <strong>AI 健康顾问</strong>。
-                    </p>
-                    <p class="text-xs text-slate-800 leading-relaxed mt-2">
-                        HPV（人乳头瘤病毒）并非女性专属，<strong>男性和女性均有极高概率感染</strong>，并可能导致多种癌症与皮肤病变（如尖锐湿疣、肛门癌、口咽癌等）。
-                    </p>
-                    <p class="text-xs text-slate-800 leading-relaxed mt-2 font-medium text-blue-600">
-                        👇 请问您想先了解哪方面的信息？
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 动态交互按钮区 -->
-        <div class="px-4 py-3 bg-slate-50 border-t border-slate-100">
-            <div class="flex flex-col gap-2" id="interactive-options">
-                <button onclick="handleUserChoice(1)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                    <span>🔍 1. 什么是 HPV？男女都会感染和致病吗？</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-                </button>
-                <button onclick="handleUserChoice(2)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                    <span>💉 2. 听说有 2价、4价、9价，有什么区别？</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- 底部输入框 -->
-        <div class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
-            <input type="text" id="chat-input-placeholder" readonly="" placeholder="请点击上方选项与 AI 互动..." class="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-400 focus:outline-none cursor-not-allowed">
-            <button class="bg-slate-300 text-white p-2 rounded-xl cursor-not-allowed">
-                <i data-lucide="send" class="w-4 h-4"></i>
-            </button>
-        </div>
-
-        <!-- 返回问卷按钮 -->
-        <div class="p-3 bg-white border-t border-slate-100">
-            <button onclick="goToNextUrl()" class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-3 rounded-xl shadow-md transition">
-                返回问卷继续填写
-            </button>
-            <p class="mt-2 text-[10px] text-slate-400 text-center">
-                点击后将进入当前分组对应页面
-            </p>
-        </div>
-
+    <!-- 研究者控制面板 -->
+    <div id="researcher-panel" style="display: none;" class="bg-slate-800 text-white p-3 text-xs flex flex-col gap-2 border-b border-slate-700">
+      <div class="flex justify-between items-center">
+        <span class="font-bold text-amber-400 flex items-center gap-1">
+          <i data-lucide="settings" class="w-3.5 h-3.5"></i> 实验干预组切换器（已锁定隐藏）
+        </span>
+        <button onclick="window.togglePanel()" class="text-slate-400 hover:text-white">隐藏面板</button>
+      </div>
+      <div class="grid grid-cols-5 gap-1">
+        <button onclick="window.switchGroup('G2')" id="btn-G2" class="group-btn py-1 px-1 rounded bg-blue-600 text-white font-medium text-[10px] text-center">G2 增益</button>
+        <button onclick="window.switchGroup('G3')" id="btn-G3" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G3 损失</button>
+        <button onclick="window.switchGroup('G4')" id="btn-G4" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G4 规范</button>
+        <button onclick="window.switchGroup('G5')" id="btn-G5" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G5 结构</button>
+        <button onclick="window.switchGroup('G6')" id="btn-G6" class="group-btn py-1 px-1 rounded bg-slate-700 text-slate-300 text-[10px] text-center">G6 个性</button>
+      </div>
+      <div class="text-[10px] text-slate-300" id="group-desc">
+        当前加载：<strong>G2 增益框架</strong> - 强调接种对男女健康的积极收益。
+      </div>
     </div>
 
-    <!-- 所有的 JavaScript 逻辑脚本统一放在最底部 -->
-    <script>
-        lucide.createIcons();
+    <!-- 头部 -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white flex items-center justify-between shadow-md">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/30 shadow-inner">
+          <i data-lucide="bot" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-sm font-bold tracking-wide flex items-center gap-1.5">
+            AI 健康顾问
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </h1>
+          <p class="text-[10px] text-blue-100">男女通用 · 科学决策支持系统</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2 text-white/80">
+        <i data-lucide="shield-check" class="w-5 h-5" title="专业医学科普"></i>
+      </div>
+    </div>
 
-        const GROUP_URLS = {
-            G2: "https://example.com/g2.html",
-            G3: "https://example.com/g3.html",
-            G4: "https://example.com/g4.html",
-            G5: "https://example.com/g5.html",
-            G6: "https://example.com/g6.html"
-        };
+    <!-- 聊天区 -->
+    <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 no-scrollbar"></div>
 
-        const frameworkTexts = {
-            G2: {
-                desc: "当前加载：<strong>G2 增益框架</strong> - 强调接种对男女健康的积极收益。",
-                title: "接种 HPV 疫苗：为男女健康双重赋能，共享无忧未来",
-                content: `选择接种 HPV 疫苗，能为您和身边的人带来<strong>极具价值的健康收益</strong>：
-                <br><br>
-                1. <strong>男女双向保护</strong>：对<strong>女生</strong>而言，能高效预防 90% 以上的宫颈癌及外阴病变；对<strong>男生</strong>而言，能有效预防尖锐湿疣、肛门癌、阴茎癌及口咽癌。
-                <br><br>
-                2. <strong>阻断传播，爱己及人</strong>：男生接种能大幅降低病毒携带率，从而保护伴侣免受感染。这是一份双向的健康契约，让亲密关系更加安心。
-                <br><br>
-                3. <strong>锁定长期健康红利</strong>：在大学阶段完成接种，能让身体尽早产生高滴度抗体，为您未来的学业、事业与家庭生活提供长达数十年、坚不可摧的健康护盾。`
-            },
-            G3: {
-                desc: "当前加载：<strong>G3 损失框架</strong> - 强调不接种的风险、损失与严重后果。",
-                title: "警惕！不接种 HPV 疫苗可能面临的健康危机与沉重代价",
-                content: `拒绝或拖延接种 HPV 疫苗，将使您暴露在<strong>极大的健康风险与不可逆的损失</strong>之中：
-                <br><br>
-                1. <strong>难逃的感染泥潭（男女皆易感）</strong>：HPV 病毒传染性极强，即使只有单一伴侣，一生中感染几率也高达 80%。<strong>男生</strong>感染后可能诱发痛苦且极易复发的尖锐湿疣及肛门癌；<strong>女生</strong>则面临宫颈癌的致命威胁。
-                <br><br>
-                2. <strong>沉重的治疗与心理负担</strong>：一旦病变，反复的物理手术、放化疗不仅摧残身体，更会带来数十万元的经济负担。
-                <br><br>
-                3. <strong>终身遗憾的“保护空白期”</strong>：随着年龄增长和社交圈扩大，感染风险成倍增加。一旦在无保护状态下感染了高危型病毒，疫苗的预防黄金期将彻底错失。`
-            },
-            G4: {
-                desc: "当前加载：<strong>G4 规范性表达</strong> - 强调医生建议、公共卫生倡议与同龄人规范。",
-                title: "听从专业建议，顺应同辈潮流：接种已成青年新风尚",
-                content: `接种 HPV 疫苗是<strong>医学界、学校及同龄群体共同践行的健康规范</strong>：
-                <br><br>
-                1. <strong>权威医学共识</strong>：世界卫生组织（WHO）及中国疾控中心强烈呼吁：无论男女，在 9-26 岁期间接种 HPV 疫苗性价比最高。
-                <br><br>
-                2. <strong>高校健康新风尚</strong>：在各大高校，越来越多的男大学生 and 女大学生将“接种 HPV 疫苗”列为入学必做清单。
-                <br><br>
-                3. <strong>身边同伴的选择</strong>：您的许多同学和室友已经主动预约并完成了接种。`
-            },
-            G5: {
-                desc: "当前加载：<strong>G5 结构化解释</strong> - 采用清晰的“是什么、为什么、怎么做”逻辑结构。",
-                title: "结构化拆解：男女皆需了解的 HPV 疫苗指南",
-                content: `为了让您高效掌握核心信息，我们将疫苗知识拆解为以下三个标准步骤：
-                <br><br>
-                <strong>步骤一：【是什么】</strong>
-                <br>HPV 是人乳头瘤病毒。HPV 疫苗是人类历史上首个成功预防癌症的疫苗，男女均可接种。
-                <br><br>
-                <strong>步骤二：【为什么】</strong>
-                <br>• <strong>高感染率</strong>：很多人终其一生都会至少感染一次。
-                <br>• <strong>双向阻断</strong>：男生接种切断传染链，女生接种直接防癌。
-                <br><br>
-                <strong>步骤三：【怎么做】</strong>
-                <br>1. <strong>选价数</strong>：预算充足首选 9价；追求性价比首选 2价/4价。
-                <br>2. <strong>去哪打</strong>：通过当地疾控中心、社区卫生服务中心或正规预约平台预约。
-                <br>3. <strong>打几针</strong>：按当地接种程序完成。`
-            }
-        };
+    <!-- 动态交互按钮区 -->
+    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100">
+      <div class="flex flex-col gap-2" id="interactive-options"></div>
+    </div>
 
-        let currentGroup = 'G2';
+    <!-- 底部输入框 -->
+    <div class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
+      <input type="text" id="chat-input-placeholder" readonly="" placeholder="请点击上方选项与 AI 互动..." class="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-400 focus:outline-none cursor-not-allowed">
+      <button class="bg-slate-300 text-white p-2 rounded-xl cursor-not-allowed">
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+    </div>
 
-        function initGroupFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const groupParam = urlParams.get('group');
-            if (groupParam) {
-                const normalized = groupParam.toUpperCase();
-                if (frameworkTexts[normalized]) {
-                    currentGroup = normalized;
-                }
-            }
-        }
+    <!-- 返回问卷按钮 -->
+    <div class="p-3 bg-white border-t border-slate-100">
+      <button onclick="window.goToNextUrl()" class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-3 rounded-xl shadow-md transition">
+        返回问卷继续填写
+      </button>
+      <p class="mt-2 text-[10px] text-slate-400 text-center">
+        点击后将进入当前分组对应页面
+      </p>
+    </div>
 
-        function updateGroupUI(group) {
-            document.querySelectorAll('.group-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white', 'font-medium');
-                btn.classList.add('bg-slate-700', 'text-slate-300');
-            });
+  </div>
 
-            const activeBtn = document.getElementById(`btn-${group}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-slate-700', 'text-slate-300');
-                activeBtn.classList.add('bg-blue-600', 'text-white', 'font-medium');
-            }
+  <script>
+    const GROUP_URLS = {
+      G2: "https://example.com/g2.html",
+      G3: "https://example.com/g3.html",
+      G4: "https://example.com/g4.html",
+      G5: "https://example.com/g5.html",
+      G6: "https://example.com/g6.html"
+    };
 
-            const descEl = document.getElementById('group-desc');
-            if (descEl && frameworkTexts[group]) {
-                descEl.innerHTML = frameworkTexts[group].desc;
-            }
+    const frameworkTexts = {
+      G2: {
+        desc: "当前加载：<strong>G2 增益框架</strong> - 强调接种对男女健康的积极收益。",
+        title: "接种 HPV 疫苗：为男女健康双重赋能，共享无忧未来",
+        content: `选择接种 HPV 疫苗，能为您和身边的人带来<strong>极具价值的健康收益</strong>：
+        <br><br>
+        1. <strong>男女双向保护</strong>：对<strong>女生</strong>而言，能高效预防 90% 以上的宫颈癌及外阴病变；对<strong>男生</strong>而言，能有效预防尖锐湿疣、肛门癌、阴茎癌及口咽癌。
+        <br><br>
+        2. <strong>阻断传播，爱己及人</strong>：男生接种能大幅降低病毒携带率，从而保护伴侣免受感染。这是一份双向的健康契约，让亲密关系更加安心。
+        <br><br>
+        3. <strong>锁定长期健康红利</strong>：在大学阶段完成接种，能让身体尽早产生高滴度抗体，为您未来的学业、事业与家庭生活提供长达数十年、坚不可摧的健康护盾。`
+      },
+      G3: {
+        desc: "当前加载：<strong>G3 损失框架</strong> - 强调不接种的风险、损失与严重后果。",
+        title: "警惕！不接种 HPV 疫苗可能面临的健康危机与沉重代价",
+        content: `拒绝或拖延接种 HPV 疫苗，将使您暴露在<strong>极大的健康风险与不可逆的损失</strong>之中：
+        <br><br>
+        1. <strong>难逃的感染泥潭（男女皆易感）</strong>：HPV 病毒传染性极强，即使只有单一伴侣，一生中感染几率也高达 80%。<strong>男生</strong>感染后可能诱发痛苦且极易复发的尖锐湿疣及肛门癌；<strong>女生</strong>则面临宫颈癌的致命威胁。
+        <br><br>
+        2. <strong>沉重的治疗与心理负担</strong>：一旦病变，反复的物理手术、放化疗不仅摧残身体，更会带来数十万元的经济负担。
+        <br><br>
+        3. <strong>终身遗憾的“保护空白期”</strong>：随着年龄增长和社交圈扩大，感染风险成倍增加。一旦在无保护状态下感染了高危型病毒，疫苗的预防黄金期将彻底错失。`
+      },
+      G4: {
+        desc: "当前加载：<strong>G4 规范性表达</strong> - 强调医生建议、公共卫生倡议与同龄人规范。",
+        title: "听从专业建议，顺应同辈潮流：接种已成青年新风尚",
+        content: `接种 HPV 疫苗是<strong>医学界、学校及同龄群体共同践行的健康规范</strong>：
+        <br><br>
+        1. <strong>权威医学共识</strong>：世界卫生组织（WHO）及中国疾控中心强烈呼吁：无论男女，在 9-26 岁期间接种 HPV 疫苗性价比最高。
+        <br><br>
+        2. <strong>高校健康新风尚</strong>：在各大高校，越来越多的男大学生 and 女大学生将“接种 HPV 疫苗”列为入学必做清单。
+        <br><br>
+        3. <strong>身边同伴的选择</strong>：您的许多同学和室友已经主动预约并完成了接种。`
+      },
+      G5: {
+        desc: "当前加载：<strong>G5 结构化解释</strong> - 采用清晰的“是什么、为什么、怎么做”逻辑结构。",
+        title: "结构化拆解：男女皆需了解的 HPV 疫苗指南",
+        content: `为了让您高效掌握核心信息，我们将疫苗知识拆解为以下三个标准步骤：
+        <br><br>
+        <strong>步骤一：【是什么】</strong>
+        <br>HPV 是人乳头瘤病毒。HPV 疫苗是人类历史上首个成功预防癌症的疫苗，男女均可接种。
+        <br><br>
+        <strong>步骤二：【为什么】</strong>
+        <br>• <strong>高感染率</strong>：很多人终其一生都会至少感染一次。
+        <br>• <strong>双向阻断</strong>：男生接种切断传染链，女生接种直接防癌。
+        <br><br>
+        <strong>步骤三：【怎么做】</strong>
+        <br>1. <strong>选价数</strong>：预算充足首选 9价；追求性价比首选 2价/4价。
+        <br>2. <strong>去哪打</strong>：通过当地疾控中心、社区卫生服务中心或正规预约平台预约。
+        <br>3. <strong>打几针</strong>：按当地接种程序完成。`
+      }
+    };
 
-            resetChat();
-        }
+    let currentGroup = "G2";
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('debug') === '15307134315') {
-                document.getElementById('researcher-panel').style.display = 'flex';
-            }
+    let g6State = {
+      hasVaccinated: null,
+      gender: null,
+      budget: null,
+      concern: null
+    };
 
-            initGroupFromUrl();
-            currentGroup = initGroupFromUrl();
-            updateGroupUI(currentGroup);
+    function initGroupFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const groupParam = urlParams.get("group");
+      if (groupParam) {
+        const normalized = groupParam.toUpperCase();
+        if (frameworkTexts[normalized]) return normalized;
+      }
+      return "G2";
+    }
+
+    function createInitialChat() {
+      return `
+        <div class="flex items-start space-x-2.5">
+          <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
+            <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
+          </div>
+          <div class="bg-white rounded-2xl rounded-tl-none p-3.5 shadow-sm border border-slate-100 max-w-[85%]">
+            <p class="text-xs text-slate-800 leading-relaxed">
+              您好！我是您的 <strong>AI 健康顾问</strong>。
+            </p>
+            <p class="text-xs text-slate-800 leading-relaxed mt-2">
+              HPV（人乳头瘤病毒）并非女性专属，<strong>男性和女性均有极高概率感染</strong>，并可能导致多种癌症与皮肤病变（如尖锐湿疣、肛门癌、口咽癌等）。
+            </p>
+            <p class="text-xs text-slate-800 leading-relaxed mt-2 font-medium text-blue-600">
+              👇 请问您想先了解哪方面的信息？
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function createInitialOptions() {
+      return `
+        <button onclick="window.handleUserChoice(1)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+          <span>🔍 1. 什么是 HPV？男女都会感染和致病吗？</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </button>
+        <button onclick="window.handleUserChoice(2)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+          <span>💉 2. 听说有 2价、4价、9价，有什么区别？</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </button>
+      `;
+    }
+
+    function updateGroupUI(group) {
+      document.querySelectorAll(".group-btn").forEach(btn => {
+        btn.classList.remove("bg-blue-600", "text-white", "font-medium");
+        btn.classList.add("bg-slate-700", "text-slate-300");
+      });
+
+      const activeBtn = document.getElementById(`btn-${group}`);
+      if (activeBtn) {
+        activeBtn.classList.remove("bg-slate-700", "text-slate-300");
+        activeBtn.classList.add("bg-blue-600", "text-white", "font-medium");
+      }
+
+      const descEl = document.getElementById("group-desc");
+      if (descEl && frameworkTexts[group]) {
+        descEl.innerHTML = frameworkTexts[group].desc;
+      }
+
+      resetChat();
+    }
+
+    function resetChat() {
+      const chatBox = document.getElementById("chat-box");
+      const options = document.getElementById("interactive-options");
+
+      chatBox.innerHTML = createInitialChat();
+      options.innerHTML = createInitialOptions();
+
+      g6State = {
+        hasVaccinated: null,
+        gender: null,
+        budget: null,
+        concern: null
+      };
+
+      lucide.createIcons();
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function togglePanel() {
+      document.getElementById("researcher-panel").style.display = "none";
+    }
+
+    function goToNextUrl() {
+      const url = GROUP_URLS[currentGroup];
+      if (url) {
+        const joiner = url.includes("?") ? "&" : "?";
+        window.location.href = url + joiner + "group=" + encodeURIComponent(currentGroup);
+      } else {
+        alert("当前分组未配置跳转链接");
+      }
+    }
+
+    function appendUserMessage(text) {
+      const chatBox = document.getElementById("chat-box");
+      const userHtml = `
+        <div class="flex items-start space-x-2.5 justify-end">
+          <div class="bg-blue-600 text-white rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] text-xs leading-relaxed">
+            ${text}
+          </div>
+          <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 border border-blue-700 text-white font-bold text-xs">
+            我
+          </div>
+        </div>
+      `;
+      chatBox.insertAdjacentHTML("beforeend", userHtml);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function appendAiMessage(htmlContent) {
+      const chatBox = document.getElementById("chat-box");
+      const aiHtml = `
+        <div class="flex items-start space-x-2.5">
+          <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
+            <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
+          </div>
+          <div class="bg-white rounded-2xl rounded-tl-none p-3.5 shadow-sm border border-slate-100 max-w-[85%] text-xs text-slate-800 leading-relaxed">
+            ${htmlContent}
+          </div>
+        </div>
+      `;
+      chatBox.insertAdjacentHTML("beforeend", aiHtml);
+      lucide.createIcons();
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function showTypingIndicator(callback) {
+      const chatBox = document.getElementById("chat-box");
+      const typingId = "typing-" + Date.now();
+
+      const typingHtml = `
+        <div id="${typingId}" class="flex items-start space-x-2.5">
+          <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
+            <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
+          </div>
+          <div class="bg-white rounded-2xl rounded-tl-none p-3 py-2 shadow-sm border border-slate-100">
+            <div class="typing-indicator flex space-x-1 items-center h-5">
+              <span class="block w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+              <span class="block w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+              <span class="block w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      chatBox.insertAdjacentHTML("beforeend", typingHtml);
+      lucide.createIcons();
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      setTimeout(() => {
+        const el = document.getElementById(typingId);
+        if (el) el.remove();
+        callback();
+      }, 1000);
+    }
+
+    function handleUserChoice(choiceId) {
+      const options = document.getElementById("interactive-options");
+
+      if (choiceId === 1) {
+        appendUserMessage("什么是 HPV？男女都会感染和致病吗？");
+        options.innerHTML = "";
+
+        showTypingIndicator(() => {
+          appendAiMessage(`
+            <strong>HPV（人乳头瘤病毒）</strong>是一种极为常见的易感病毒。
+            <br><br>
+            ⚠️ <strong>关键事实：男女均会感染！</strong>
+            <br>
+            • <strong>女生感染</strong>：长期持续感染高危型 HPV 是导致宫颈癌的重要原因。
+            <br>
+            • <strong>男生感染</strong>：感染 HPV 也可能导致尖锐湿疣、肛门癌、阴茎癌、口咽癌等。
+            <br>
+            • <strong>传播途径</strong>：主要通过皮肤黏膜接触传播。
+          `);
+
+          setTimeout(() => {
+            options.innerHTML = `
+              <button onclick="window.handleUserChoice(2)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+                <span>💉 了解 2价、4价、9价的区别</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+              </button>
+            `;
+            lucide.createIcons();
+          }, 400);
         });
 
-        function togglePanel() {
-            document.getElementById('researcher-panel').style.display = 'none';
-        }
+      } else if (choiceId === 2) {
+        appendUserMessage("听说有 2价、4价、9价，有什么区别？");
+        options.innerHTML = "";
 
-        function goToNextUrl() {
-            const url = GROUP_URLS[currentGroup];
-            if (url) {
-                const joiner = url.includes("?") ? "&" : "?";
-                window.location.href = url + joiner + "group=" + encodeURIComponent(currentGroup);
-            } else {
-                alert("当前分组未配置跳转链接");
-            }
-        }
+        showTypingIndicator(() => {
+          appendAiMessage(`
+            “价”代表疫苗能预防的<strong>病毒亚型数量</strong>。价数越高，预防范围越广：
+            <br><br>
+            • <strong>2价疫苗</strong>：预防 HPV 16、18型。
+            <br>
+            • <strong>4价疫苗</strong>：在 2价基础上，增加了对 6、11型的预防。
+            <br>
+            • <strong>9价疫苗</strong>：预防范围最广，可预防更多亚型。
+          `);
 
-        let g6State = {
-            hasVaccinated: null,
-            gender: null,
-            budget: null,
-            concern: null
-        };
-
-        function switchGroup(group) {
-            currentGroup = group;
-            updateGroupUI(group);
-        }
-
-        function resetChat() {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML = `
-                <div class="flex items-start space-x-2.5">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
-                        <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
-                    </div>
-                    <div class="bg-white rounded-2xl rounded-tl-none p-3.5 shadow-sm border border-slate-100 max-w-[85%]">
-                        <p class="text-xs text-slate-800 leading-relaxed">
-                            您好！我是您的 <strong>AI 健康顾问</strong>。
-                        </p>
-                        <p class="text-xs text-slate-800 leading-relaxed mt-2">
-                            HPV（人乳头瘤病毒）并非女性专属，<strong>男性和女性均有极高概率感染</strong>，并可能导致多种癌症与皮肤病变。
-                        </p>
-                        <p class="text-xs text-slate-800 leading-relaxed mt-2 font-medium text-blue-600">
-                            👇 请问您想先了解哪方面的信息？
-                        </p>
-                    </div>
-                </div>
-            `;
-
-            const options = document.getElementById('interactive-options');
+          setTimeout(() => {
             options.innerHTML = `
-                <button onclick="handleUserChoice(1)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                    <span>🔍 1. 什么是 HPV？男女都会感染和致病吗？</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-                </button>
-                <button onclick="handleUserChoice(2)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                    <span>💉 2. 听说有 2价、4价、9价，有什么区别？</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-                </button>
+              <button onclick="window.showIntervention()" class="w-full text-left text-xs bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-3 rounded-xl transition shadow-md font-bold flex justify-between items-center">
+                <span>📢 获取我的接种建议指南</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-white"></i>
+              </button>
+              ${currentGroup === "G6" ? `
+              <button onclick="window.startG6Flow()" class="w-full text-left text-xs bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-3.5 py-3 rounded-xl transition shadow-md font-bold flex justify-between items-center">
+                <span>🎯 开启专属接种评估（G6个性化诊断）</span>
+                <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+              </button>` : ""}
             `;
             lucide.createIcons();
+          }, 400);
+        });
+      }
+    }
+
+    function showIntervention() {
+      const options = document.getElementById("interactive-options");
+
+      appendUserMessage("获取我的接种建议指南");
+      options.innerHTML = "";
+
+      showTypingIndicator(() => {
+        const data = frameworkTexts[currentGroup] || frameworkTexts.G2;
+
+        appendAiMessage(`
+          <div class="border-l-4 border-blue-500 pl-3 py-1 mb-3">
+            <h3 class="font-bold text-slate-900 text-sm">${data.title}</h3>
+          </div>
+          <div class="text-slate-700 leading-relaxed text-xs">
+            ${data.content}
+          </div>
+        `);
+
+        options.innerHTML = `
+          <div class="text-center py-2 text-xs text-slate-400 flex items-center justify-center gap-1">
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+            您已完成本次 AI 健康咨询
+          </div>
+        `;
+        lucide.createIcons();
+      });
+    }
+
+    function startG6Flow() {
+      const options = document.getElementById("interactive-options");
+      options.innerHTML = "";
+
+      g6State = {
+        hasVaccinated: null,
+        gender: null,
+        budget: null,
+        concern: null
+      };
+
+      appendUserMessage("开启专属接种评估");
+
+      showTypingIndicator(() => {
+        appendAiMessage(`
+          为了给您生成<strong>量身定制</strong>的专属接种建议，我需要向您提 4 个简单问题。
+          <br><br>
+          <strong>问题 1：您目前是否已经接种过 HPV 疫苗？</strong>
+        `);
+
+        options.innerHTML = `
+          <button onclick="window.saveG6Answer('hasVaccinated', 'yes')" class="w-full text-left text-xs bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 border border-slate-200 hover:border-emerald-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+            <span>已接种（哪怕只打过 1 针）</span>
+            <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">已接种</span>
+          </button>
+          <button onclick="window.saveG6Answer('hasVaccinated', 'no')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+            <span>从未接种过</span>
+            <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">核心目标</span>
+          </button>
+        `;
+        lucide.createIcons();
+      });
+    }
+
+    function saveG6Answer(key, value) {
+      g6State[key] = value;
+      const options = document.getElementById("interactive-options");
+      options.innerHTML = "";
+
+      if (key === "hasVaccinated" && value === "yes") {
+        appendUserMessage("我之前已经接种过 HPV 疫苗。");
+        showTypingIndicator(() => {
+          appendAiMessage(`
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl mb-3">
+              <span class="text-xs font-bold text-emerald-800 flex items-center gap-1">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> 状态：已接种
+              </span>
+              <p class="text-[11px] text-emerald-700 mt-1">
+                提示：您可以返回问卷继续填写。
+              </p>
+            </div>
+            <strong>🎉 太棒了！您已经迈出了保护健康的关键一步！</strong>
+            <br><br>
+            <strong>💡 AI 专属建议：</strong>
+            <br>
+            1. 如果只接种了部分针剂，请按程序完成后续针剂。
+            <br>
+            2. 已完成全程接种者，可按医生建议继续随访。
+          `);
+
+          options.innerHTML = `
+            <div class="text-center py-2 text-xs text-slate-400 flex items-center justify-center gap-1">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+              评估完成（已接种群体）
+            </div>
+          `;
+          lucide.createIcons();
+        });
+        return;
+      }
+
+      if (key === "hasVaccinated" && value === "no") {
+        appendUserMessage("我从未接种过 HPV 疫苗。");
+        showTypingIndicator(() => {
+          appendAiMessage(`
+            <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl mb-3 text-[11px] text-amber-800">
+              🎯 您属于<strong>【未接种群体】</strong>。
+            </div>
+            <strong>问题 2：您的生理性别是？</strong>
+          `);
+
+          options.innerHTML = `
+            <button onclick="window.saveG6Answer('gender', 'M')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>男生 (Male)</span>
+              <i data-lucide="mars" class="w-4 h-4 text-blue-500"></i>
+            </button>
+            <button onclick="window.saveG6Answer('gender', 'F')" class="w-full text-left text-xs bg-white hover:bg-pink-50 text-slate-700 hover:text-pink-600 border border-slate-200 hover:border-pink-300 px-3.5 py-2 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>女生 (Female)</span>
+              <i data-lucide="venus" class="w-4 h-4 text-pink-500"></i>
+            </button>
+          `;
+          lucide.createIcons();
+        });
+        return;
+      }
+
+      if (key === "gender") {
+        const genderText = value === "M" ? "男生" : "女生";
+        appendUserMessage(`我是${genderText}。`);
+        showTypingIndicator(() => {
+          appendAiMessage(`
+            收到。
+            <br><br>
+            <strong>问题 3：在选择疫苗时，您的预算/经济承受力如何？</strong>
+          `);
+
+          options.innerHTML = `
+            <button onclick="window.saveG6Answer('budget', 'high')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>自费九价无压力</span>
+              <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">追求全面保护</span>
+            </button>
+            <button onclick="window.saveG6Answer('budget', 'low')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>预算有限，追求高性价比</span>
+              <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">追求经济划算</span>
+            </button>
+          `;
+          lucide.createIcons();
+        });
+        return;
+      }
+
+      if (key === "budget") {
+        const budgetText = value === "high" ? "自费九价无压力" : "预算有限，追求高性价比";
+        appendUserMessage(`我的预算情况：${budgetText}。`);
+        showTypingIndicator(() => {
+          appendAiMessage(`
+            明白。
+            <br><br>
+            <strong>问题 4：目前最阻碍您去接种的核心顾虑是？</strong>
+          `);
+
+          options.innerHTML = `
+            <button onclick="window.saveG6Answer('concern', 'side-effect')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>担心疫苗副作用或安全性</span>
+              <i data-lucide="shield-alert" class="w-4 h-4 text-amber-500"></i>
+            </button>
+            <button onclick="window.saveG6Answer('concern', 'hard-to-get')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>预约太难，抢不到针，流程繁琐</span>
+              <i data-lucide="calendar-x" class="w-4 h-4 text-red-500"></i>
+            </button>
+            <button onclick="window.saveG6Answer('concern', 'no-sex')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
+              <span>目前没有性生活，觉得没必要打</span>
+              <i data-lucide="help-circle" class="w-4 h-4 text-slate-400"></i>
+            </button>
+          `;
+          lucide.createIcons();
+        });
+        return;
+      }
+
+      if (key === "concern") {
+        let concernText = "";
+        if (value === "side-effect") concernText = "担心疫苗副作用";
+        if (value === "hard-to-get") concernText = "抢不到针/流程繁琐";
+        if (value === "no-sex") concernText = "无性生活觉得没必要";
+
+        appendUserMessage(`我的核心顾虑是：${concernText}。`);
+        showTypingIndicator(() => {
+          generateG6TailoredAdvice();
+        });
+      }
+    }
+
+    function generateG6TailoredAdvice() {
+      const { gender, budget, concern } = g6State;
+      const options = document.getElementById("interactive-options");
+      const genderLabel = gender === "M" ? "男生" : "女生";
+      const budgetLabel = budget === "high" ? "预算充足" : "精打细算";
+
+      let adviceHtml = `
+        <div class="p-3 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200 rounded-xl mb-4">
+          <span class="text-xs font-bold text-amber-800 flex items-center gap-1">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> 您的专属画像：未接种 · ${genderLabel} · ${budgetLabel}
+          </span>
+        </div>
+        <strong>💡 针对您个人情况的深度接种建议：</strong>
+        <br><br>
+      `;
+
+      if (gender === "M") {
+        adviceHtml += `• <strong>疫苗选择</strong>：`;
+        if (budget === "high") {
+          adviceHtml += `强烈推荐您选择 <strong>9价 HPV 疫苗</strong>。`;
+        } else {
+          adviceHtml += `建议您选择 <strong>4价 HPV 疫苗</strong>。`;
         }
 
-        function showTypingIndicator(callback) {
-            const chatBox = document.getElementById('chat-box');
-            const typingId = 'typing-' + Date.now();
-
-            const typingHtml = `
-                <div id="${typingId}" class="flex items-start space-x-2.5">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
-                        <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
-                    </div>
-                    <div class="bg-white rounded-2xl rounded-tl-none p-3 py-2 shadow-sm border border-slate-100">
-                        <div class="typing-indicator flex space-x-1 items-center h-5">
-                            <span class="block w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
-                            <span class="block w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
-                            <span class="block w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            chatBox.insertAdjacentHTML('beforeend', typingHtml);
-            lucide.createIcons();
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            setTimeout(() => {
-                const el = document.getElementById(typingId);
-                if (el) el.remove();
-                callback();
-            }, 1000);
+        adviceHtml += `<br><br>• <strong>消除您的顾虑（针对您的痛点）</strong>：<br>`;
+        if (concern === "side-effect") {
+          adviceHtml += `针对您担心的【安全性】：常见不良反应多为局部疼痛、红肿或轻微发热。`;
+        } else if (concern === "hard-to-get") {
+          adviceHtml += `针对您担心的【抢不到针】：可优先关注社区医院或疾控预约渠道。`;
+        } else if (concern === "no-sex") {
+          adviceHtml += `针对您认为的【无性生活不需要】：越早接种越有利于获得保护。`;
         }
 
-        function appendUserMessage(text) {
-            const chatBox = document.getElementById('chat-box');
-            const userHtml = `
-                <div class="flex items-start space-x-2.5 justify-end">
-                    <div class="bg-blue-600 text-white rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] text-xs leading-relaxed">
-                        ${text}
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 border border-blue-700 text-white font-bold text-xs">
-                        我
-                    </div>
-                </div>
-            `;
-            chatBox.insertAdjacentHTML('beforeend', userHtml);
-            chatBox.scrollTop = chatBox.scrollHeight;
+        adviceHtml += `<br><br>• <strong>男生接种的额外社会价值</strong>：接种不仅保护自己，也有助于减少传播风险。`;
+
+      } else {
+        adviceHtml += `• <strong>疫苗选择</strong>：`;
+        if (budget === "high") {
+          adviceHtml += `强烈推荐您选择 <strong>9价 HPV 疫苗</strong>。`;
+        } else {
+          adviceHtml += `强烈建议您优先考虑 <strong>2价 HPV 疫苗</strong>。`;
         }
 
-        function appendAiMessage(htmlContent) {
-            const chatBox = document.getElementById('chat-box');
-            const aiHtml = `
-                <div class="flex items-start space-x-2.5">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 border border-blue-200">
-                        <i data-lucide="bot" class="w-4.5 h-4.5 text-blue-600"></i>
-                    </div>
-                    <div class="bg-white rounded-2xl rounded-tl-none p-3.5 shadow-sm border border-slate-100 max-w-[85%] text-xs text-slate-800 leading-relaxed">
-                        ${htmlContent}
-                    </div>
-                </div>
-            `;
-            chatBox.insertAdjacentHTML('beforeend', aiHtml);
-            lucide.createIcons();
-            chatBox.scrollTop = chatBox.scrollHeight;
+        adviceHtml += `<br><br>• <strong>消除您的顾虑（针对您的痛点）</strong>：<br>`;
+        if (concern === "side-effect") {
+          adviceHtml += `针对您担心的【安全性】：HPV 疫苗不含活病毒。`;
+        } else if (concern === "hard-to-get") {
+          adviceHtml += `针对您担心的【抢不到针】：如果高价数难约，可先接种可及疫苗。`;
+        } else if (concern === "no-sex") {
+          adviceHtml += `针对您认为的【无性生活不需要】：无性生活阶段往往更适合尽早预防。`;
         }
+      }
 
-        function handleUserChoice(choiceId) {
-            const options = document.getElementById('interactive-options');
+      appendAiMessage(adviceHtml);
 
-            if (choiceId === 1) {
-                appendUserMessage("什么是 HPV？男女都会感染和致病吗？");
-                options.innerHTML = '';
-                showTypingIndicator(() => {
-                    appendAiMessage(`
-                        <strong>HPV（人乳头瘤病毒）</strong>是一种极为常见的易感病毒。
-                        <br><br>
-                        ⚠️ <strong>关键事实：男女均会感染！</strong>
-                        <br>
-                        • <strong>女生感染</strong>：长期持续感染高危型 HPV 是导致宫颈癌的重要原因。
-                        <br>
-                        • <strong>男生感染</strong>：感染 HPV 也可能导致尖锐湿疣、肛门癌、阴茎癌、口咽癌等。
-                        <br>
-                        • <strong>传播途径</strong>：主要通过皮肤黏膜接触传播。
-                    `);
+      options.innerHTML = `
+        <div class="text-center py-2 text-xs text-slate-400 flex flex-col items-center justify-center gap-1">
+          <span class="flex items-center gap-1 text-emerald-600 font-medium">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            已为您生成专属接种决策方案
+          </span>
+          <button onclick="window.resetChat()" class="mt-2 text-[10px] text-blue-600 hover:underline">重新评估</button>
+        </div>
+      `;
+      lucide.createIcons();
+    }
 
-                    setTimeout(() => {
-                        options.innerHTML = `
-                            <button onclick="handleUserChoice(2)" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                                <span>💉 了解 2价、4价、9价的区别</span>
-                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-                            </button>
-                        `;
-                        lucide.createIcons();
-                    }, 500);
-                });
-            } else if (choiceId === 2) {
-                appendUserMessage("听说有 2价、4价、9价，有什么区别？");
-                options.innerHTML = '';
-                showTypingIndicator(() => {
-                    appendAiMessage(`
-                        “价”代表疫苗能预防的<strong>病毒亚型数量</strong>。价数越高，预防范围越广：
-                        <br><br>
-                        • <strong>2价疫苗</strong>：预防 HPV 16、18型。
-                        <br>
-                        • <strong>4价疫苗</strong>：在2价基础上，增加了对 6、11型的预防。
-                        <br>
-                        • <strong>9价疫苗</strong>：预防范围最广，可预防更多亚型。
-                    `);
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("debug") === "15307134315") {
+        document.getElementById("researcher-panel").style.display = "flex";
+      }
 
-                    setTimeout(() => {
-                        if (currentGroup === 'G6') {
-                            options.innerHTML = `
-                                <button onclick="startG6Flow()" class="w-full text-left text-xs bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-3.5 py-3 rounded-xl transition shadow-md font-bold flex justify-between items-center">
-                                    <span>🎯 开启专属接种评估（G6个性化诊断）</span>
-                                    <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
-                                </button>
-                            `;
-                        } else {
-                            options.innerHTML = `
-                                <button onclick="showIntervention()" class="w-full text-left text-xs bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-3 rounded-xl transition shadow-md font-bold flex justify-between items-center">
-                                    <span>📢 获取我的接种建议指南</span>
-                                    <i data-lucide="arrow-right" class="w-4 h-4 text-white"></i>
-                                </button>
-                            `;
-                        }
-                        lucide.createIcons();
-                    }, 500);
-                });
-            }
-        }
+      currentGroup = initGroupFromUrl();
+      updateGroupUI(currentGroup);
+    });
 
-        function showIntervention() {
-            const options = document.getElementById('interactive-options');
-            options.innerHTML = '';
-            appendUserMessage("获取我的接种建议指南");
+    window.togglePanel = togglePanel;
+    window.switchGroup = function(group) {
+      currentGroup = group;
+      updateGroupUI(group);
+    };
+    window.goToNextUrl = goToNextUrl;
+    window.resetChat = resetChat;
+    window.handleUserChoice = handleUserChoice;
+    window.showIntervention = showIntervention;
+    window.startG6Flow = startG6Flow;
+    window.saveG6Answer = saveG6Answer;
+    window.generateG6TailoredAdvice = generateG6TailoredAdvice;
 
-            showTypingIndicator(() => {
-                const data = frameworkTexts[currentGroup];
-                appendAiMessage(`
-                    <div class="border-l-4 border-blue-500 pl-3 py-1 mb-3">
-                        <h3 class="font-bold text-slate-900 text-sm">${data.title}</h3>
-                    </div>
-                    <div class="text-slate-700 leading-relaxed text-xs">
-                        ${data.content}
-                    </div>
-                `);
-
-                options.innerHTML = `
-                    <div class="text-center py-2 text-xs text-slate-400 flex items-center justify-center gap-1">
-                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
-                        您已完成本次 AI 健康咨询
-                    </div>
-                `;
-                lucide.createIcons();
-            });
-        }
-
-        function startG6Flow() {
-            const options = document.getElementById('interactive-options');
-            options.innerHTML = '';
-            appendUserMessage("开启专属接种评估");
-
-            showTypingIndicator(() => {
-                appendAiMessage(`
-                    为了给您生成<strong>量身定制</strong>的专属接种建议，我需要向您提 4 个简单问题。
-                    <br><br>
-                    <strong>问题 1：您目前是否已经接种过 HPV 疫苗？</strong>
-                `);
-
-                options.innerHTML = `
-                    <button onclick="saveG6Answer('hasVaccinated', 'yes')" class="w-full text-left text-xs bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 border border-slate-200 hover:border-emerald-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                        <span>已接种（哪怕只打过 1 针）</span>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">已接种</span>
-                    </button>
-                    <button onclick="saveG6Answer('hasVaccinated', 'no')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                        <span>从未接种过</span>
-                        <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">核心目标</span>
-                    </button>
-                `;
-                lucide.createIcons();
-            });
-        }
-
-        function saveG6Answer(key, value) {
-            g6State[key] = value;
-            const options = document.getElementById('interactive-options');
-            options.innerHTML = '';
-
-            if (key === 'hasVaccinated' && value === 'yes') {
-                appendUserMessage("我之前已经接种过 HPV 疫苗。");
-                showTypingIndicator(() => {
-                    appendAiMessage(`
-                        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl mb-3">
-                            <span class="text-xs font-bold text-emerald-800 flex items-center gap-1">
-                                <i data-lucide="check-circle-2" class="w-4 h-4"></i> 状态：已接种
-                            </span>
-                            <p class="text-[11px] text-emerald-700 mt-1">
-                                提示：您可以返回问卷继续填写。
-                            </p>
-                        </div>
-                        <strong>🎉 太棒了！您已经迈出了保护健康的关键一步！</strong>
-                        <br><br>
-                        <strong>💡 AI 专属建议：</strong>
-                        <br>
-                        1. 如果只接种了部分针剂，请按程序完成后续针剂。
-                        <br>
-                        2. 已完成全程接种者，可按医生建议继续随访。
-                    `);
-
-                    options.innerHTML = `
-                        <div class="text-center py-2 text-xs text-slate-400 flex items-center justify-center gap-1">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
-                            评估完成（已接种群体）
-                        </div>
-                    `;
-                    lucide.createIcons();
-                });
-                return;
-            }
-
-            if (key === 'hasVaccinated' && value === 'no') {
-                appendUserMessage("我从未接种过 HPV 疫苗。");
-                showTypingIndicator(() => {
-                    appendAiMessage(`
-                        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl mb-3 text-[11px] text-amber-800">
-                            🎯 您属于<strong>【未接种群体】</strong>。
-                        </div>
-                        <strong>问题 2：您的生理性别是？</strong>
-                    `);
-                    options.innerHTML = `
-                        <button onclick="saveG6Answer('gender', 'M')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>男生 (Male)</span>
-                            <i data-lucide="mars" class="w-4 h-4 text-blue-500"></i>
-                        </button>
-                        <button onclick="saveG6Answer('gender', 'F')" class="w-full text-left text-xs bg-white hover:bg-pink-50 text-slate-700 hover:text-pink-600 border border-slate-200 hover:border-pink-300 px-3.5 py-2 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>女生 (Female)</span>
-                            <i data-lucide="venus" class="w-4 h-4 text-pink-500"></i>
-                        </button>
-                    `;
-                    lucide.createIcons();
-                });
-            } else if (key === 'gender') {
-                const genderText = value === 'M' ? "男生" : "女生";
-                appendUserMessage(`我是${genderText}。`);
-                showTypingIndicator(() => {
-                    appendAiMessage(`
-                        收到。
-                        <br><br>
-                        <strong>问题 3：在选择疫苗时，您的预算/经济承受力如何？</strong>
-                    `);
-                    options.innerHTML = `
-                        <button onclick="saveG6Answer('budget', 'high')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>自费九价无压力</span>
-                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">追求全面保护</span>
-                        </button>
-                        <button onclick="saveG6Answer('budget', 'low')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>预算有限，追求高性价比</span>
-                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">追求经济划算</span>
-                        </button>
-                    `;
-                    lucide.createIcons();
-                });
-            } else if (key === 'budget') {
-                const budgetText = value === 'high' ? "自费九价无压力" : "预算有限，追求高性价比";
-                appendUserMessage(`我的预算情况：${budgetText}。`);
-                showTypingIndicator(() => {
-                    appendAiMessage(`
-                        明白。
-                        <br><br>
-                        <strong>问题 4：目前最阻碍您去接种的核心顾虑是？</strong>
-                    `);
-                    options.innerHTML = `
-                        <button onclick="saveG6Answer('concern', 'side-effect')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>担心疫苗副作用或安全性</span>
-                            <i data-lucide="shield-alert" class="w-4 h-4 text-amber-500"></i>
-                        </button>
-                        <button onclick="saveG6Answer('concern', 'hard-to-get')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>预约太难，抢不到针，流程繁琐</span>
-                            <i data-lucide="calendar-x" class="w-4 h-4 text-red-500"></i>
-                        </button>
-                        <button onclick="saveG6Answer('concern', 'no-sex')" class="w-full text-left text-xs bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-3.5 py-2.5 rounded-xl transition shadow-sm font-medium flex justify-between items-center">
-                            <span>目前没有性生活，觉得没必要打</span>
-                            <i data-lucide="help-circle" class="w-4 h-4 text-slate-400"></i>
-                        </button>
-                    `;
-                    lucide.createIcons();
-                });
-            } else if (key === 'concern') {
-                let concernText = "";
-                if (value === 'side-effect') concernText = "担心疫苗副作用";
-                if (value === 'hard-to-get') concernText = "抢不到针/流程繁琐";
-                if (value === 'no-sex') concernText = "无性生活觉得没必要";
-
-                appendUserMessage(`我的核心顾虑是：${concernText}。`);
-                showTypingIndicator(() => {
-                    generateG6TailoredAdvice();
-                });
-            }
-        }
-
-        function generateG6TailoredAdvice() {
-            const { gender, budget, concern } = g6State;
-            const options = document.getElementById('interactive-options');
-            const genderLabel = gender === 'M' ? "男生" : "女生";
-            const budgetLabel = budget === 'high' ? "预算充足" : "精打细算";
-
-            let adviceHtml = `
-                <div class="p-3 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200 rounded-xl mb-4">
-                    <span class="text-xs font-bold text-amber-800 flex items-center gap-1">
-                        <i data-lucide="sparkles" class="w-4 h-4"></i> 您的专属画像：未接种 · ${genderLabel} · ${budgetLabel}
-                    </span>
-                </div>
-                <strong>💡 针对您个人情况的深度接种建议：</strong>
-                <br><br>
-            `;
-
-            if (gender === 'M') {
-                adviceHtml += `• <strong>疫苗选择</strong>：`;
-                if (budget === 'high') {
-                    adviceHtml += `强烈推荐您选择 <strong>9价 HPV 疫苗</strong>。`;
-                } else {
-                    adviceHtml += `建议您选择 <strong>4价 HPV 疫苗</strong>。`;
-                }
-
-                adviceHtml += `<br><br>• <strong>消除您的顾虑（针对您的痛点）</strong>：<br>`;
-                if (concern === 'side-effect') {
-                    adviceHtml += `针对您担心的【安全性】：常见不良反应多为局部疼痛、红肿或轻微发热。`;
-                } else if (concern === 'hard-to-get') {
-                    adviceHtml += `针对您担心的【抢不到针】：可优先关注社区医院或疾控预约渠道。`;
-                } else if (concern === 'no-sex') {
-                    adviceHtml += `针对您认为的【无性生活不需要】：越早接种越有利于获得保护。`;
-                }
-
-                adviceHtml += `<br><br>• <strong>男生接种的额外社会价值</strong>：接种不仅保护自己，也有助于减少传播风险。`;
-
-            } else {
-                adviceHtml += `• <strong>疫苗选择</strong>：`;
-                if (budget === 'high') {
-                    adviceHtml += `强烈推荐您选择 <strong>9价 HPV 疫苗</strong>。`;
-                } else {
-                    adviceHtml += `强烈建议您优先考虑 <strong>2价 HPV 疫苗</strong>。`;
-                }
-
-                adviceHtml += `<br><br>• <strong>消除您的顾虑（针对您的痛点）</strong>：<br>`;
-                if (concern === 'side-effect') {
-                    adviceHtml += `针对您担心的【安全性】：HPV 疫苗不含活病毒。`;
-                } else if (concern === 'hard-to-get') {
-                    adviceHtml += `针对您担心的【抢不到针】：如果高价数难约，可先接种可及疫苗。`;
-                } else if (concern === 'no-sex') {
-                    adviceHtml += `针对您认为的【无性生活不需要】：无性生活阶段往往更适合尽早预防。`;
-                }
-            }
-
-            appendAiMessage(adviceHtml);
-
-            options.innerHTML = `
-                <div class="text-center py-2 text-xs text-slate-400 flex flex-col items-center justify-center gap-1">
-                    <span class="flex items-center gap-1 text-emerald-600 font-medium">
-                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                        已为您生成专属接种决策方案
-                    </span>
-                    <button onclick="resetChat()" class="mt-2 text-[10px] text-blue-600 hover:underline">重新评估</button>
-                </div>
-            `;
-            lucide.createIcons();
-        }
-    </script>
-
+    lucide.createIcons();
+  </script>
 
 
 </body></html>
